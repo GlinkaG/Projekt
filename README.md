@@ -1,1 +1,1 @@
-# Projekt na EDI
+# Projekt
