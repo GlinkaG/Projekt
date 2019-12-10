@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="prism.css">
+    <script src="prism.js"></script>
+    <style>
+        body{
+            background-color:rgb(255, 241, 224);
+            padding-left:1em;
+            padding-top:1em;
+        }
+        p{
+            padding-left:1em;
+            font-size:1.1em;
+            color: black;
+            -webkit-text-fill-color: black; /* Will override color (regardless of order) */
+            -webkit-text-stroke-width: 0.0008em;
+            -webkit-text-stroke-color: white;
+        }
+        pre,code {
+            font-family: monospace, monospace;
+        }
+
+        pre {
+            overflow: auto;
+        }
+
+        pre>code {
+            display: block;
+            padding: 1rem;
+            word-wrap: normal;
+        }
+    </style>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script>
+        window.addEventListener("DOMContentLoaded", (event) => {
+            console.log("Strona została załadowana")
+            main = document.getElementById("main")
+
+            //### Funkcja pobierająca liczbe użytkowników będących online w podanej w argumencie aplikacji steam
+            async function RequestUserCountForGame(appid) {
+                mURL = "https://cors-anywhere.herokuapp.com/https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=" + appid
+                return $.ajax({
+                    method: 'GET',
+                    url: mURL,
+                    headers: {
+                        'Access-Control-Allow-Credentials': true,
+                        'Access-Control-Allow-Origin': '*',
+                        'Access-Control-Allow-Methods': 'GET',
+                        'Access-Control-Allow-Headers': 'application/json',
+                    },
+                })
+            }
+            //###
+
+            //##### Przykład użycia danych dopiero po dostaniu odpowiedzi ze steam api
+            async function testRequestUserCountForGame(appid) {
+                try {
+                    const res = await RequestUserCountForGame(appid)
+                    console.log(res.response.player_count)
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+            //testRequestUserCountForGame(730)
+            //#####
+
+            //####### Przykład wyświetlenia danych na stronie
+            var element = document.createElement("p")
+            element.innerText = "Wciśnij przycisk aby dowiedzieć się ile graczy jest online w CSGO "
+            element.id = "wyswietl"
+            main.appendChild(element)
+            var wyjscie = document.getElementById("wyswietl")
+            async function clickRequestUserCountForGame(appid) {
+                try {
+                    const res = await RequestUserCountForGame(appid)
+                    playerCount = res.response.player_count
+                    wyjscie.innerText = "W CSGO jest online: " + playerCount + " graczy"
+                } catch (err) {
+                    console.log(err);
+                }
+            }
+            przycisk = document.getElementById("przycisk")
+            przycisk.addEventListener("click",()=>{
+                wyjscie.innerText = "Oczekiwanie na powrót odpowiedzi ze Steam Api" 
+                clickRequestUserCountForGame(730)
+            })
+            //####### 
+        })
+        
+    </script>
+</head>
+
+<body>
+    <div id="main">
+        <p>https://cors-anywhere.herokuapp.com/ Przestaje odpowiadać domenie v-ie.uek.krakow.pl jeśli za dużo requestów na raz zostaje wysłane</p>
+        <p>pamiętajcie żeby używać cors-anywhere tylko do api które nie pozwalają na odbiór danych przez przeglądarki a pozwalają na odbiór przez server (np. steam api)</p>
+        <p>W przeciwnym wypadku cors-anywhere zablokuje nas i będzie trzeba poszukać albo postawić inne proxy</p>
+        <p>cors-anywhere ma limit danych 2MB dla pojedyńczego requestu</p>
+        <p>Logika za cors-anywhere: <a href="https://medium.com/netscape/hacking-it-out-when-cors-wont-let-you-be-great-35f6206cc646"  target="_blank">https://medium.com/netscape/hacking-it-out-when-cors-wont-let-you-be-great-35f6206cc646</a> </p>
+        <br>
+        <p>Polecam włączenie konsoli i zobaczenie zakładki network w chwili wysłania żądania po kliknięciu przycisku z dołu strony</p>
+        <p>Zrobiłem tutaj ajaxem z jquery ale XMLHttpRequest jest lepszym rozwiązaniem, w tym momencie nie chce mi się tego już zmieniać </p>
+        <figure>
+            <figcaption>Przykład podpięcia się do api (używając ajaxa z jquery) (jest to też skrypt tej strony)</figcaption>
+            <pre>
+<code class="language-javascript">
+window.addEventListener("DOMContentLoaded", (event) => {
+    console.log("Strona została załadowana")
+    main = document.getElementById("main")
+
+    //### Funkcja pobierająca liczbe użytkowników będących online w podanej w argumencie aplikacji steam, używając zapytania ze steamowego api (https://steamcommunity.com/dev / https://steamapi.xpaw.me/)
+    async function RequestUserCountForGame(appid) {
+        mURL = "https://cors-anywhere.herokuapp.com/https://api.steampowered.com/ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=" + appid
+        return $.ajax({
+            method: 'GET',
+            url: mURL,
+            headers: {
+                'Access-Control-Allow-Credentials': true,
+                'Access-Control-Allow-Origin': '*',
+                'Access-Control-Allow-Methods': 'GET',
+                'Access-Control-Allow-Headers': 'application/json',
+            },
+        })
+    }
+    //###
+
+    //##### Przykład użycia danych dopiero po dostaniu odpowiedzi ze steam api
+    async function testRequestUserCountForGame(appid) {
+        try {
+            const res = await RequestUserCountForGame(appid)
+            console.log(res.response.player_count)
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    //testRequestUserCountForGame(730)
+    //#####
+
+    //####### Przykład wyświetlenia danych na stronie po kliknięciu przycisku
+    var element = document.createElement("p")
+    element.innerText = "Wciśnij przycisk aby dowiedzieć się ile graczy jest online w CSGO "
+    element.id = "wyswietl"
+    main.appendChild(element)
+    var wyjscie = document.getElementById("wyswietl")
+    async function clickRequestUserCountForGame(appid) {
+        try {
+            const res = await RequestUserCountForGame(appid)
+            playerCount = res.response.player_count
+            wyjscie.innerText = "W CSGO jest online: " + playerCount + " graczy"
+        } catch (err) {
+            console.log(err);
+        }
+    }
+    przycisk = document.getElementById("przycisk")
+    przycisk.addEventListener("click",()=>{
+        wyjscie.innerText = "Oczekiwanie na powrót odpowiedzi ze Steam Api" 
+        clickRequestUserCountForGame(730)
+    })
+    //####### 
+})
+              </code>
+            </pre>
+        </figure>
+        <button id = "przycisk">Przetestuj funkcję pobierająca liczbe użytkowników</button>
+    </div>
+</body>
+
+</html>
