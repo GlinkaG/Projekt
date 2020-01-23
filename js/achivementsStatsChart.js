@@ -1,11 +1,13 @@
-async function chart(){
+async function chart(e){
     document.getElementById("main").innerHTML = "<canvas id='myChart' width='900px' height='600px'></canvas>";
+    //console.log(e.currentTarget.gameid)
+    appid=e.currentTarget.gameid.appid
     console.log(r);
     var labels = [];
     var data = [];
     var backgroundColor = [];
     var borderColor = [];
-    trophies = await getGlobalAchievementPercentages(currentProxy, 730);
+    trophies = await getGlobalAchievementPercentages(currentProxy, appid);
     console.log(trophies);
     console.log(trophies.achievements.length)
 

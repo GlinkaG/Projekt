@@ -34,6 +34,8 @@ function gameElement(where, gameid, gamename, usercount, image) {
     element.style.backgroundRepeat = "no-repeat"
     element.style.color = "white"
     element.style.textShadow = "1px 0 0 #000, 0 -1px 0 #000, 0 1px 0 #000, -1px 0 0 #000"
+    element.gameid = gameid
+    element.addEventListener("click", chart)
     this.element = element
     where.appendChild(element)
 }
