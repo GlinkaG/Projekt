@@ -1,1 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#563d7c">
+    <title>Document</title>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/request.js"></script>
+    <script src="js/getGame.js"></script>
+    <script src="js/getArt.js"></script>
+    <script src="js/getGameList.js"></script>
+    <script src="js/proxyChooser.js"></script>
+    <script src="js/getAllSteamApps.js"></script>
+    <script src="js/getSteamSpyAppDetails.js"></script>
+    <script src="js/getNumberOfCurrentPlayers.js"></script>
+    <script src="js/gameElement.js"></script>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script>
+        window.addEventListener("DOMContentLoaded", (event) => {
+            proxyChoice = 2 //1 to oryginalne anywhere cors heroku app, 2 to moje własne young-ravine cors herokuapp, wybór na wypadek gdyby jedno się wysypało z jakiegoś powodu
+            currentProxy = proxyChooser(proxyChoice)
+            console.log("testing")
+            main = document.getElementById("main")
+            Bstart = document.createElement("button")
+            Bstart.addEventListener("click", startPage)
+            Bstart.innerText = "test"
+            main.appendChild(Bstart)
+            
+            
+            
+            async function startPage() {
+                //
+                //var allSteamApps = await getAllSteamApps(currentProxy)
+                //console.log(allSteamApps)
+                
+                console.log("test start page")
+                main.innerHTML = ""
+                main.appendChild(Bstart)
+                //gameList = await getGameList(currentProxy)
+                gameList = [
+                    {appid:730},
+                    {appid:570},
+                    {appid:578080},
+                    {appid:359550},
+                    {appid:271590},
+                    {appid:22490}
+                ]
+                
+                console.log(gameList)
+                for (var i = 0; i < gameList.length; i++) {
+                    gameinfo = await getSteamSpyAppDetails(currentProxy, gameList[i].appid)
+                    gameinfo = gameinfo.name
+
+                    new gameElement(main, gameList[i], gameinfo,await getNumberOfCurrentPlayers(currentProxy,gameList[i].appid),getArt([gameList[i].appid]))
+                }
+
+            }
+
+        })
+    </script>
+</head>
+
+<body class="text-center container">
+    <div id="main">
+        <h1> Witaj na stronie pozwalającej na obserwację statystyk najpopularniejszych gier na steam.</h1>
+
+    </div>
+</body>
+
+</html>
