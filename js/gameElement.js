@@ -12,24 +12,42 @@ function gameElement(where, gameid, gamename, usercount, image) {
     dummy.style.marginRight = "0px"
     dummy.style.float ="left"
     element.appendChild(dummy)
-    el1 = document.createElement("p")
-    el1.style.width = "330px"
+    el1 = document.createElement("td")
+    el1.style.width = "167px"
+    el1.style.verticalAlign = "middle"
     //el1.style.float = "left"
     el1.innerText = gamename
     //el1.style.float ="left"
     //el1.style.position = "absolute"
     //el1.left = "10px"
     //element.appendChild(el1)
-    el2 = document.createElement("p")
-    el2.style.width = "330px"
+    el2 = document.createElement("td")
+    el2.style.width = "170px"
+    //el2.style.borderLeft = "white solid 1px"
+    
+
     //el1.style.float = "left"
     el2.innerText = "Liczba Graczy Online: " + usercount
     //el2.style.float ="left"
-    container = document.createElement("div")
-    container.appendChild(el1)
-    container.appendChild(el2)
+    container = document.createElement("table")
+    tr = document.createElement("tr")
+    container.appendChild(tr)
+    tr.appendChild(el1)
+    divider = document.createElement("div")
+
+    divider.style.width = "1px"
+    divider.style.height = "215px"
+    divider.style.border = "1px white solid"
+    divider.style.position = "absolute"
+    divider.style.right = "167px"
+    tr.appendChild(divider)
+    tr.appendChild(el2)
+    container.style.height = "200px"
+    container.style.width = "334px"
+
     container.style.verticalAlign = "middle"
 
+   
     //container.
     // //el1.style.position = "absolute"
     // //el1.left = "10px"
