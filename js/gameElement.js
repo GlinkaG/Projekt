@@ -16,18 +16,27 @@ function gameElement(where, gameid, gamename, usercount, image) {
     el1.style.width = "330px"
     //el1.style.float = "left"
     el1.innerText = gamename
-    el1.style.float ="left"
+    //el1.style.float ="left"
     //el1.style.position = "absolute"
     //el1.left = "10px"
-    element.appendChild(el1)
+    //element.appendChild(el1)
     el2 = document.createElement("p")
     el2.style.width = "330px"
     //el1.style.float = "left"
     el2.innerText = "Liczba Graczy Online: " + usercount
-    el2.style.float ="left"
+    //el2.style.float ="left"
+    container = document.createElement("div")
+    container.appendChild(el1)
+    container.appendChild(el2)
+    container.style.verticalAlign = "middle"
+
+    //container.
     // //el1.style.position = "absolute"
     // //el1.left = "10px"
-    element.appendChild(el2)
+    //element.appendChild(el2)
+    container.style.float = "left"
+    element.appendChild(container)
+    
     // element.appendChild(el1 = document.createElement("p"))
     // element.style.width ="460px"
     // element.style.height="215px"
