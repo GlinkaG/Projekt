@@ -36,10 +36,12 @@ function gameElement(where, gameid, gamename, usercount, image) {
     divider = document.createElement("div")
 
     divider.style.width = "1px"
-    divider.style.height = "215px"
+    divider.style.height = "100px"
     divider.style.border = "1px white solid"
     divider.style.position = "absolute"
-    divider.style.right = "167px"
+    divider.style.right = "175px"
+    divider.style.verticalAlign ="middle"
+    divider.style.top = "25%"
     tr.appendChild(divider)
     tr.appendChild(el2)
     container.style.height = "200px"
