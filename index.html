@@ -18,6 +18,7 @@
     <script src="js/getSteamSpyAppDetails.js"></script>
     <script src="js/getNumberOfCurrentPlayers.js"></script>
     <script src="js/gameElement.js"></script>
+    <script src="js/getGlobalAchievementPercentages.js"></script>
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <script>
@@ -50,7 +51,7 @@
                     {appid:271590},
                     {appid:22490}
                 ]
-                
+                console.log(await getGlobalAchievementPercentages(currentProxy,730))
                 console.log(gameList)
                 for (var i = 0; i < gameList.length; i++) {
                     gameinfo = await getSteamSpyAppDetails(currentProxy, gameList[i].appid)
