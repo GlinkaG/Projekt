@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <style>
+        .button {
+            background-color: rgb(255, 255, 255); /* White */
+            border: 10px
+            color: #171a21;
+            padding: 15px 32px;
+            text-align: center;
+            color: rgb(26, 65, 89);
+            text-decoration: none;
+            display: inline-block;
+            font-size: 22px;
+            margin: 4px 2px;
+            cursor: pointer;
+            
+          }
+          .text{
+            background-color: #171a21;
+            width: 1000px;
+            border: 15px;
+            border-color: white;
+            padding: 50px;
+            margin: 20px;
+            color:rgb(255, 255, 255);
+            font-style: italic;
+          }
+          body {
+            background-image: url('Background.png');
+          }
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <meta name="theme-color" content="#563d7c">
+    <title>Document</title>
+    <script src="js/jquery-3.4.1.min.js"></script>
+    <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/request.js"></script>
+    <script src="js/getGame.js"></script>
+    <script src="js/getArt.js"></script>
+    <script src="js/getGameList.js"></script>
+    <script src="js/proxyChooser.js"></script>
+    <script src="js/getAllSteamApps.js"></script>
+    <script src="js/getSteamSpyAppDetails.js"></script>
+    <script src="js/getNumberOfCurrentPlayers.js"></script>
+    <script src="js/gameElement.js"></script>
+    <script src="js/getGlobalAchievementPercentages.js"></script>
+    <script src="js/achivementsStatsChart.js"></script>
+    <script src="js/Chart.min.js"></script>
+    <script src="js/getSteamSpyTop100.js"></script>
+    <script src="js/startPage.js"></script>
+
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+
+    <script>
+            render = true
+        window.addEventListener("DOMContentLoaded", (event) => {
+            proxyChoice = 2 //1 to oryginalne anywhere cors heroku app, 2 to moje własne young-ravine cors herokuapp, wybór na wypadek gdyby jedno się wysypało z jakiegoś powodu
+            currentProxy = proxyChooser(proxyChoice)
+            console.log("testing")
+            main = document.getElementById("main")
+            // Bstart = document.createElement("button")
+            // Bstart.addEventListener("click", startPage)
+            // Bstart.innerText = "test"
+            // main.appendChild(Bstart)
+
+
+
+            
+
+        })
+    </script>
+</head>
+
+<body class="text-center container" style = "background-color: rgb(26, 65, 89);">
+    <button class = button id="click" onclick="startPage(10)">Wyświetl top 10</button>
+    <button class = button id="click" onclick="startPage(20)">Wyświetl top 20</button>
+    <button class = button id="click" onclick="startPage(100)">Wyświetl top 100</button>
+
+    <div id="main">
+        <h1 class = "text"> Witaj na stronie pozwalającej na obserwację statystyk najpopularniejszych gier na steam.</h1>
+
+    </div>
+</body>
+
+</html>
