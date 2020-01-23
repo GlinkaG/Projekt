@@ -21,54 +21,36 @@
     <script src="js/getGlobalAchievementPercentages.js"></script>
     <script src="js/achivementsStatsChart.js"></script>
     <script src="js/Chart.min.js"></script>
+    <script src="js/getSteamSpyTop100.js"></script>
+    <script src="js/startPage.js"></script>
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
 
     <script>
+            render = true
         window.addEventListener("DOMContentLoaded", (event) => {
-            proxyChoice = 1 //1 to oryginalne anywhere cors heroku app, 2 to moje własne young-ravine cors herokuapp, wybór na wypadek gdyby jedno się wysypało z jakiegoś powodu
+            proxyChoice = 2 //1 to oryginalne anywhere cors heroku app, 2 to moje własne young-ravine cors herokuapp, wybór na wypadek gdyby jedno się wysypało z jakiegoś powodu
             currentProxy = proxyChooser(proxyChoice)
             console.log("testing")
             main = document.getElementById("main")
-            Bstart = document.createElement("button")
-            Bstart.addEventListener("click", startPage)
-            Bstart.innerText = "test"
-            main.appendChild(Bstart)
-            
-            
-            
-            async function startPage() {
-                //
-                //var allSteamApps = await getAllSteamApps(currentProxy)
-                //console.log(allSteamApps)
-                
-                console.log("test start page")
-                main.innerHTML = ""
-                main.appendChild(Bstart)
-                //gameList = await getGameList(currentProxy)
-                gameList = [
-                    {appid:730},
-                    {appid:570},
-                    {appid:578080},
-                    {appid:271590},
-                    {appid:22490}
-                ]
-                console.log(await getGlobalAchievementPercentages(currentProxy,730))
-                console.log(gameList)
-                for (var i = 0; i < gameList.length; i++) {
-                    gameinfo = await getSteamSpyAppDetails(currentProxy, gameList[i].appid)
-                    gameinfo = gameinfo.name
+            // Bstart = document.createElement("button")
+            // Bstart.addEventListener("click", startPage)
+            // Bstart.innerText = "test"
+            // main.appendChild(Bstart)
 
-                    new gameElement(main, gameList[i], gameinfo,await getNumberOfCurrentPlayers(currentProxy,gameList[i].appid),getArt([gameList[i].appid]))
-                }
 
-            }
+
+            
 
         })
     </script>
 </head>
 
 <body class="text-center container">
+    <button id="click" onclick="startPage(10)">Wyświetl 10 gier z najwyższą średnią ilością godzin online</button>
+    <button id="click" onclick="startPage(20)">Wyświetl 20 gier z najwyższą średnią ilością godzin online</button>
+    <button id="click" onclick="startPage(100)">Wyświetl 100 gier z najwyższą średnią ilością godzin online</button>
+
     <div id="main">
         <h1> Witaj na stronie pozwalającej na obserwację statystyk najpopularniejszych gier na steam.</h1>
 
