@@ -5,6 +5,7 @@ async function startPage(liczba) {
 
     console.log("test start page")
     main.innerHTML = ""
+    render = true;
     //main.appendChild(Bstart)
     //gameList = await getGameList(currentProxy)
     gameList = [
@@ -50,14 +51,17 @@ async function startPage(liczba) {
     ///console.log(gamelist2)
     //console.log(await getGlobalAchievementPercentages(currentProxy,730))
     //console.log(gameList)
+    
+        for (var i = 0; i < liczba/*byAverage.length*/; i++) {
 
-    for (var i = 0; i < liczba/*byAverage.length*/; i++) {
-
-        //gameinfo = await getSteamSpyAppDetails(currentProxy, byAverage[i].appid)
-        //gameinfo = gameinfo.name
-        
-        gameinfo = byAverage[i].name
-        new gameElement(main, byAverage[i], gameinfo, await getNumberOfCurrentPlayers(currentProxy, byAverage[i].appid), getArt([byAverage[i].appid]))
-    }
+            //gameinfo = await getSteamSpyAppDetails(currentProxy, byAverage[i].appid)
+            //gameinfo = gameinfo.name
+            if(render){
+            gameinfo = byAverage[i].name
+            new gameElement(main, byAverage[i], gameinfo, await getNumberOfCurrentPlayers(currentProxy, byAverage[i].appid), getArt([byAverage[i].appid]))
+            }
+        }
+    
+    
 
 }

@@ -1,11 +1,13 @@
 async function chart(e)
 {
+    render = false
     appid=e.currentTarget.gameid.appid
     count = await getNumberOfCurrentPlayers(currentProxy,appid);
     ach = await getAchievements(currentProxy, appid);
 
     if(ach.length >0)
     {
+        render = false
         document.getElementById("main").innerHTML = "";
         
         main_chart = document.getElementById("main");
@@ -87,6 +89,7 @@ async function chart(e)
         
     else
     {
+        render = true
         alert("Dla tej gry nie ma osiągnięć!");
     }
 }    
