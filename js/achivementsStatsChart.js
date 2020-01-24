@@ -3,9 +3,25 @@ async function chart(e)
     appid=e.currentTarget.gameid.appid
     if(appid != 570)
     {
-        document.getElementById("main").innerHTML = "<canvas id='myChart' width='900px' height='600px'></canvas>";
-        //console.log(e.currentTarget.gameid)
-        appid=e.currentTarget.gameid.appid
+        document.getElementById("main").innerHTML = "";
+        count = await getNumberOfCurrentPlayers(currentProxy,appid);
+        ach = await getAchievements(currentProxy, appid);
+        console.log(res[0]["name"]);
+        main_chart = document.getElementById("main");
+        div1 = document.createElement("table");
+        var row = div1.insertRow(0);
+        var row2 = div1.insertRow(1);
+        var cell1_1 = row.insertCell(0);
+        var cell2_1 = row2.insertCell(0);
+        cell1_1.style.fontSize = "80px"
+        cell2_1.style.fontFamily = "";
+        cell1_1.style.fontWeight = "bold";
+        cell1_1.innerText = count;
+        cell2_1.innerText = "Graczy w danym momencie";
+        main.appendChild(div1);
+        console.log(count);
+
+        document.getElementById("main").innerHTML += "<canvas id='myChart' width='900px' height='600px'></canvas>";
         console.log(r);
         var labels = [];
         var data = [];
@@ -15,16 +31,16 @@ async function chart(e)
         console.log(trophies);
         console.log(trophies.achievements.length)
 
-        
 
-        for(i = 0; i < 20; i++)
-        {
-            //push nazw 20 pierwszych osiagniec do tablicy
-            labels.push(trophies.achievements[i]["name"]);
-        }
+       Object.keys(ach).sort().forEach(function (key) {
+            labels.push(ach[key].name)
+        });
+        labels = labels.slice(0, 19);
+
+
         for(i = 0; i < 20; i++) //push wartosci procentowej osiagniec 
         {
-            data.push(trophies.achievements[i]["percent"]);
+            data.push(Math.round(trophies.achievements[i]["percent"]));
 
         }
 
