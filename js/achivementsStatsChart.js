@@ -14,6 +14,7 @@ async function chart(e)
         
         var row = div1.insertRow(0);
         var row2 = div1.insertRow(1);
+        div1.classList.add("players")
         div1.classList.add("chart");
         var cell1_1 = row.insertCell(0);
         var cell2_1 = row2.insertCell(0);
