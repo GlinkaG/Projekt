@@ -3,15 +3,16 @@ async function chart(e)
     appid=e.currentTarget.gameid.appid
     count = await getNumberOfCurrentPlayers(currentProxy,appid);
     ach = await getAchievements(currentProxy, appid);
-
     if(ach.length >0)
     {
         document.getElementById("main").innerHTML = "";
         
         main_chart = document.getElementById("main");
         div1 = document.createElement("table");
+        
         var row = div1.insertRow(0);
         var row2 = div1.insertRow(1);
+        div1.classList.add("chart");
         var cell1_1 = row.insertCell(0);
         var cell2_1 = row2.insertCell(0);
         cell1_1.style.fontSize = "80px"
@@ -21,6 +22,7 @@ async function chart(e)
         cell2_1.innerText = "Graczy w danym momencie";
         main.appendChild(div1);
         console.log(count);
+        
 
         document.getElementById("main").innerHTML += "<canvas id='myChart' width='900px' height='600px'></canvas>";
         console.log(r);
