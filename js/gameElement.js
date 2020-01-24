@@ -2,7 +2,7 @@ function gameElement(where, gameid, gamename, usercount, image) {
     element = document.createElement("div")
     //element.innerHTML = gamename + " Liczba Graczy Online: " + usercount
     element.style.backgroundImage = image
-    element.style.backgroundColor = "#1a4159"
+    element.style.backgroundColor = "#171a21"
     element.style.width ="800px"
     element.style.height="215px"
     element.style.position = "relative"
@@ -67,4 +67,5 @@ function gameElement(where, gameid, gamename, usercount, image) {
     element.addEventListener("click", chart)
     this.element = element
     where.appendChild(element)
+    element.classList.add("element")
 }
