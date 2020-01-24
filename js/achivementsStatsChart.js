@@ -55,8 +55,8 @@ async function chart(e)
             var r = Math.floor(Math.random() * 256);
             var g = Math.floor(Math.random() * 256);
             var b = Math.floor(Math.random() * 256);
-            var kolor_tlo = "rgba(" + r + "," + g + "," + b + "," + "0.2)";
-            var border = "rgba(" + r + "," + g + "," + b + "," + "1)";
+            var kolor_tlo = "rgba(" + r + "," + g + "," + b + "," + "0.7)";
+            var border = "rgba(" + r + "," + g + "," + b + "," + "5)";
             backgroundColor.push(kolor_tlo);
             borderColor.push(border);
         }
