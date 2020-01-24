@@ -36,7 +36,7 @@ async function chart(e)
        Object.keys(ach).sort().forEach(function (key) {
             labels.push(ach[key].name)
         });
-        labels = labels.slice(0, 19);
+        labels = labels.slice(0, 20);
 
 
         for(i = 0; i < 20; i++) //push wartosci procentowej osiagniec 
