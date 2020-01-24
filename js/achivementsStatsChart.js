@@ -1,12 +1,13 @@
 async function chart(e)
 {
     appid=e.currentTarget.gameid.appid
-    if(appid != 570)
+    count = await getNumberOfCurrentPlayers(currentProxy,appid);
+    ach = await getAchievements(currentProxy, appid);
+
+    if(ach.length >0)
     {
         document.getElementById("main").innerHTML = "";
-        count = await getNumberOfCurrentPlayers(currentProxy,appid);
-        ach = await getAchievements(currentProxy, appid);
-        console.log(res[0]["name"]);
+        
         main_chart = document.getElementById("main");
         div1 = document.createElement("table");
         var row = div1.insertRow(0);
