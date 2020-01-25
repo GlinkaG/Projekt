@@ -58,7 +58,7 @@ async function startPage(liczba) {
             //gameinfo = gameinfo.name
             if(render){
             gameinfo = byAverage[i].name
-            new gameElement(main, byAverage[i], gameinfo, await getNumberOfCurrentPlayers(currentProxy, byAverage[i].appid), getArt([byAverage[i].appid]))
+            new gameElement(main, byAverage[i], gameinfo, byAverage[i].name, getArt([byAverage[i].appid]))
             }
         }
     

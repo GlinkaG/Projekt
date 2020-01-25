@@ -27,7 +27,7 @@ function gameElement(where, gameid, gamename, usercount, image) {
     
 
     //el1.style.float = "left"
-    el2.innerText = "Liczba Graczy Online: " + usercount
+    el2.innerText = "Średnia liczba graczy Online: " + usercount
     //el2.style.float ="left"
     container = document.createElement("table")
     tr = document.createElement("tr")
