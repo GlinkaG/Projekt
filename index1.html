@@ -20,60 +20,155 @@
     <script src="js/gameElement.js"></script>
     <script src="js/getGlobalAchievementPercentages.js"></script>
     <script src="js/achivementsStatsChart.js"></script>
-    <script src="js/getAchievements.js"></script>
     <script src="js/Chart.min.js"></script>
+    <script src="js/getSteamSpyTop100.js"></script>
+    <script src="js/getAchievements.js"></script>
+    <script src="js/startPage.js"></script>
+ 
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
+    <style>
+        .button {
+            background-color: #171a21; /* SteamDarkBlue*/
+            border: 10px;
+            color: white ;
+            padding: 15px 32px;
+            text-align: center;
+            color: white;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 22px;
+            margin: 4px 2px;
+            cursor: pointer;
 
+          }
+          .text{
+            background-color: #171a21;
+            width: 1000px;
+            border: 15px;
+            border-color: white;
+            padding: 50px;
+            margin: 20px;
+            color:rgb(255, 255, 255);
+            font-style: italic;
+          }
+          #myChart{
+              background-color: rgb(255, 255, 255);
+          }                 
+          .players{
+              color: #171a21;
+              background-color: rgb(255, 255, 255);
+              width: 100%;
+              
+          }
+
+            .ach_table td{
+                padding: 3%;
+            }
+
+            .header {
+                background-color:rgb(26, 65, 89);
+                color: white;
+            }
+          
+          
+          .ach_table tr:nth-child(even) {
+              background-color: #f2f2f2;
+
+            }
+
+            .ach_table th tr {
+                background-color:rgb(26, 65, 89);
+            }
+
+            .menu {
+                height: 100%;
+                width: 5%;
+                background-color:#171a21;
+                margin-left: 0;
+                float: left;
+                position: fixed;
+                left: 0;
+                top: 0;
+            }
+
+            .menu:hover {
+                width: 25%;
+                
+            }
+
+            .menu-content {
+                display: none;
+                padding: 30px;
+                background-color: #171a21;
+                color: white;
+                border-bottom: 1px solid black;
+                cursor: pointer;
+            }
+
+            .menu:hover .menu-content {
+                display: block;
+            }
+
+            .menu-content:hover {
+                background-color: rgb(26, 65, 89);
+            }
+            #icon {
+                color: white;
+            }
+
+
+
+
+          body {
+            background-image: url('Background.jpg');
+            
+          }
+          #main{
+            text-align:center;
+          }
+          .element{
+              margin:0 auto;
+          }
+        
+    </style>
     <script>
+            render = true
         window.addEventListener("DOMContentLoaded", (event) => {
-            proxyChoice = 1 //1 to oryginalne anywhere cors heroku app, 2 to moje własne young-ravine cors herokuapp, wybór na wypadek gdyby jedno się wysypało z jakiegoś powodu
+            proxyChoice = 2 //1 to oryginalne anywhere cors heroku app, 2 to moje własne young-ravine cors herokuapp, wybór na wypadek gdyby jedno się wysypało z jakiegoś powodu
             currentProxy = proxyChooser(proxyChoice)
             console.log("testing")
             main = document.getElementById("main")
-            Bstart = document.createElement("button")
-            Bstart.addEventListener("click", startPage)
-            Bstart.innerText = "test"
-            main.appendChild(Bstart)
-            
-            
-            
-            async function startPage() {
-                //
-                //var allSteamApps = await getAllSteamApps(currentProxy)
-                //console.log(allSteamApps)
-                
-                console.log("test start page")
-                main.innerHTML = ""
-                main.appendChild(Bstart)
-                //gameList = await getGameList(currentProxy)
-                gameList = [
-                    {appid:730},
-                    {appid:570},
-                    {appid:578080},
-                    {appid:359550},
-                    {appid:271590},
-                    {appid:22490}
-                ]
-                console.log(await getGlobalAchievementPercentages(currentProxy,730))
-                console.log(gameList)
-                for (var i = 0; i < gameList.length; i++) {
-                    gameinfo = await getSteamSpyAppDetails(currentProxy, gameList[i].appid)
-                    gameinfo = gameinfo.name
+            // Bstart = document.createElement("button")
+            // Bstart.addEventListener("click", startPage)
+            // Bstart.innerText = "test"
+            // main.appendChild(Bstart)
 
-                    new gameElement(main, gameList[i], gameinfo,await getNumberOfCurrentPlayers(currentProxy,gameList[i].appid),getArt([gameList[i].appid]))
-                }
 
-            }
+
+            
 
         })
     </script>
 </head>
 
-<body class="text-center container">
-    <div id="main">
-        <h1> Witaj na stronie pozwalającej na obserwację statystyk najpopularniejszych gier na steam.</h1>
 
+
+<body class="text-center container" style = "background-color: rgb(26, 65, 89);">
+    
+
+    <div id="main">
+        <h1 class = "text"> Witaj na stronie pozwalającej na obserwację statystyk najpopularniejszych gier na steam.</h1>
+
+    </div>
+
+    <div class="menu">
+        <div id="icon"><img src="menu.png" width="40px" height="40px" margin-top="1%"><br>Menu</div>
+        <div class="menu-content" id="button" onclick="startPage(10)">Wyswietl top 10</div>
+        <div class="menu-content" id="button">Wyswietl top 20</div>
+        <div class="menu-content" id="button">Wyswietl top 100</div>
+
+    
     </div>
 </body>
 

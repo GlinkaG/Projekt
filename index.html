@@ -24,6 +24,7 @@
     <script src="js/getSteamSpyTop100.js"></script>
     <script src="js/getAchievements.js"></script>
     <script src="js/startPage.js"></script>
+ 
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <style>
@@ -59,7 +60,66 @@
               background-color: rgb(255, 255, 255);
               width: 100%;
               
-          }    
+          }
+
+            .ach_table td{
+                padding: 3%;
+            }
+
+            .header {
+                background-color:rgb(26, 65, 89);
+                color: white;
+            }
+          
+          
+          .ach_table tr:nth-child(even) {
+              background-color: #f2f2f2;
+
+            }
+
+            .ach_table th tr {
+                background-color:rgb(26, 65, 89);
+            }
+
+            .menu {
+                height: 100%;
+                width: 5%;
+                background-color:#171a21;
+                margin-left: 0;
+                float: left;
+                position: fixed;
+                left: 0;
+                top: 0;
+            }
+
+            .menu:hover {
+                width: 25%;
+                
+            }
+
+            .menu-content {
+                display: none;
+                padding: 30px;
+                background-color: #171a21;
+                color: white;
+                border-bottom: 1px solid black;
+                cursor: pointer;
+            }
+
+            .menu:hover .menu-content {
+                display: block;
+            }
+
+            .menu-content:hover {
+                background-color: rgb(26, 65, 89);
+            }
+            #icon {
+                color: white;
+            }
+
+
+
+
           body {
             background-image: url('Background.jpg');
             
@@ -92,14 +152,23 @@
     </script>
 </head>
 
+
+
 <body class="text-center container" style = "background-color: rgb(26, 65, 89);">
-    <button class = button id="click" onclick="startPage(10)">Wyświetl top 10</button>
-    <button class = button id="click" onclick="startPage(20)">Wyświetl top 20</button>
-    <button class = button id="click" onclick="startPage(100)">Wyświetl top 100</button>
+    
 
     <div id="main">
         <h1 class = "text"> Witaj na stronie pozwalającej na obserwację statystyk najpopularniejszych gier na steam.</h1>
 
+    </div>
+
+    <div class="menu">
+        <div id="icon"><img src="menu.png" width="40px" height="40px" margin-top="1%"><br>Menu</div>
+        <div class="menu-content" id="button" onclick="startPage(10)">Wyswietl top 10</div>
+        <div class="menu-content" id="button" onclick="startPage(20)">Wyswietl top 20</div>
+        <div class="menu-content" id="button" onclick="startPage(100)">Wyswietl top 100</div>
+
+    
     </div>
 </body>
 

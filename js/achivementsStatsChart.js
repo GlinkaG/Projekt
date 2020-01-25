@@ -33,6 +33,7 @@ async function chart(e)
         var data = [];
         var backgroundColor = [];
         var borderColor = [];
+        var ach_desc = [];
         trophies = await getGlobalAchievementPercentages(currentProxy, appid);
         console.log(trophies);
         console.log(trophies.achievements.length)
@@ -41,6 +42,13 @@ async function chart(e)
        Object.keys(ach).sort().forEach(function (key) {
             labels.push(ach[key].name)
         });
+
+        Object.keys(ach).sort().forEach(function (key) {
+            ach_desc.push(ach[key].description)
+        });
+
+        console.log(ach_desc);
+        labels_temp = labels;
         labels = labels.slice(0, 20);
 
 
@@ -79,14 +87,65 @@ async function chart(e)
             },
          options: {
                 scales: {
-                 yAxes: [{
-                        ticks: {
-                            beginAtZero: true
+                 yAxes: [
+                      { 
+                        fontColor:  "#a4d007",
+                        id: 'y-axis-1',
+                        type: 'linear',
+                        position: 'left',
+                        ticks: { min: 0, max: 100 , }
+                     }, 
+                    ],
+                xAxes: [{
+                ticks: {
+                    fontColor: "#a4d007",
+                    fontSize: 14,
+                    stepSize: 1,
+                    beginAtZero: true
                         }
                     }]
                 }
+            },
+        legend:{
+            labels:{
+                fontColor:  "#a4d007",
+            }
             }
         });
+
+        line = document.createElement("div");
+        line.style.height="1px";
+        line.style.backgroundColor="black";
+        line.style.width = "80px";
+        main.appendChild(line);
+
+        var y = 0;
+        ach_table = document.createElement("table");
+        ach_table.style.margin = "auto";
+        ach_table.style.marginTop = "5%";
+        ach_table.style.width = "100%";
+        ach_table.classList.add("ach_table");
+        var header = ach_table.createTHead();
+        var h_row = header.insertRow(0);
+        var h_cell1 = h_row.insertCell(0);
+        var h_cell2 = h_row.insertCell(0);
+        h_cell1.classList.add("header");
+        h_cell2.classList.add("header");
+        h_cell1.innerText = "Nazwa osiągnięcia";
+        h_cell2.innerText = "Opis";
+        ach_table.style.backgroundColor = "white";
+        for(i = 1; i < labels.length; i++)
+        {
+            var row = ach_table.insertRow(i);
+            cellx = row.insertCell(y)
+            cellx.innerText = labels_temp[i];
+            cellx2 = row.insertCell(1);
+            cellx2.innerText = ach_desc[i];
+        }
+
+
+
+        main.appendChild(ach_table);
 
         }
         
