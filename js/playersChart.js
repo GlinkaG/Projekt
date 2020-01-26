@@ -23,12 +23,12 @@ async function playersChart(e)
         //console.log(gamelist2[key])
         gamelist3.push(gamelist2[key])
     });
-    console.log(gamelist3)
+    //console.log(gamelist3)
     var byAverage = gamelist3.slice(0);
     byAverage.sort(function (a, b) {
         return b.average_forever - a.average_forever;
     });
-    console.log(byAverage)
+    //console.log(byAverage)
 gamelist2 = await getSteamSpyTop100(currentProxy)
     gamelist3 = []
 
@@ -36,12 +36,12 @@ gamelist2 = await getSteamSpyTop100(currentProxy)
         //console.log(gamelist2[key])
         gamelist3.push(gamelist2[key])
     });
-    console.log(gamelist3)
+    //console.log(gamelist3)
     var byAverage = gamelist3.slice(0);
     byAverage.sort(function (a, b) {
         return b.average_forever - a.average_forever;
     });
-    console.log(byAverage)
+    //console.log(byAverage)
 
 gamelist2 = await getSteamSpyTop100(currentProxy)
     gamelist3 = []
@@ -50,12 +50,12 @@ gamelist2 = await getSteamSpyTop100(currentProxy)
         //console.log(gamelist2[key])
         gamelist3.push(gamelist2[key])
     });
-    console.log(gamelist3)
+    //console.log(gamelist3)
     var byAverage = gamelist3.slice(0);
     byAverage.sort(function (a, b) {
         return b.average_forever - a.average_forever;
     });
-    console.log(byAverage)
+    //console.log(byAverage)
 
 
     var apps = [];
@@ -67,23 +67,21 @@ gamelist2 = await getSteamSpyTop100(currentProxy)
         apps.push(byAverage[key].appid)
     });
 
-    console.log(apps);
+    //console.log(apps);
 
     for(i = 0; i < 20; i++)
     {
-        var temp = await getNumberOfCurrentPlayers(currentProxy, apps[i]);
+        var temp = await getNumberOfCurrentPlayers(currentProxy, byAverage[i].appid);
         p_count.push(temp);
 
         
     }
-    console.log(p_count);
+    //console.log(p_count);
     for( i = 0; i < 20; i++)
     {
-        var temp_names = await getSteamSpyAppDetails(currentProxy, apps[i]);
-        console.log(temp_names["name"]);
-        names.push(temp_names["name"]);
+        names.push(byAverage[i].name);
     }
-    console.log(names);
+    //console.log(names);
 
     for(i = 0; i < 20; i++) //definicja tablicy z losowymi kolorami dla słupków
         {
