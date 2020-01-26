@@ -55,7 +55,7 @@ gamelist2 = await getSteamSpyTop100(currentProxy)
     var p_count = [];
     var backgroundColor = [];
     var borderColor = [];
-
+    var labelx = 'Podzial ilości graczy w '+ e +'najpopularniejszych grach'
     for(i = 0; i < e; i++) //definicja tablicy z losowymi kolorami dla słupków
         {
             var r = Math.floor(Math.random() * 256);
@@ -69,14 +69,14 @@ gamelist2 = await getSteamSpyTop100(currentProxy)
 
     main = document.getElementById("main");
     main.innerHTML = "<canvas id='myChart' width='800' height='800'></canvas>";
-
+        
     var ctx = document.getElementById("myChart");
     var myChart = new Chart(ctx, {
     type: 'pie',
     data: {
         labels: names,
         datasets: [{
-        label: 'Podzial ilości graczy w '+ e +'najpopularniejszych grach',
+        label: labelx,
         data: p_count,
         backgroundColor,
         borderColor,
@@ -85,7 +85,7 @@ gamelist2 = await getSteamSpyTop100(currentProxy)
     },
     options: {
         cutoutPercentage: 40,
-        responsive: false,
+        responsive: true,
 
     }
     });
