@@ -2,21 +2,6 @@ async function playersChart(e)
 {
     gamelist2 = await getSteamSpyTop100(currentProxy)
     gamelist3 = []
-    // ordered = gamelist2
-
-    // keys = []
-    // k,i, len;
-    // for (k in gamelist2){
-    //     if (gamelist2.hasOwnProperty(k)){
-    //         keys.push(k);
-    //     }
-    // }
-    // keys.sort()
-    // len = keys.length;
-    // for (i = 0; i < len; i++) {
-    //     k = keys[i];
-    //     console.log(k + ':' + myObj[k]);
-    // }
 
 
     Object.keys(gamelist2).sort().forEach(function (key) {
