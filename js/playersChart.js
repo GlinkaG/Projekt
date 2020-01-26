@@ -89,8 +89,8 @@ gamelist2 = await getSteamSpyTop100(currentProxy)
 
     }
     });
-    myChart.canvas.parentNode.style.height = '80%';
-    myChart.canvas.parentNode.style.width = '80%';
+    myChart.canvas.parentNode.style.height = '85%';
+    myChart.canvas.parentNode.style.width = '85%';
 
     Object.keys(byAverage).sort().forEach(function (key) {
         apps.push(byAverage[key].appid)

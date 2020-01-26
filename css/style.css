@@ -99,6 +99,8 @@
   }
   #main{
     text-align:center;
+    width:85%;
+    height:85%;
   }
   .element{
       margin:0 auto;
