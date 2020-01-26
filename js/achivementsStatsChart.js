@@ -51,14 +51,14 @@ async function chart(e)
         labels_temp = labels;
         labels = labels.slice(0, 20);
 
-
-        for(i = 0; i < 20; i++) //push wartosci procentowej osiagniec 
-        {
-            data.push(Math.round(trophies.achievements[i]["percent"]));
-
-        }
-
-        for(i = 0; i < 20; i++) //definicja tablicy z losowymi kolorami dla słupków
+        console.log(trophies)
+        if(trophies.achievements[0]){
+            for(i = 0; i < 20; i++) //push wartosci procentowej osiagniec 
+            {
+                data.push(Math.round(trophies.achievements[i]["percent"]));
+    
+            }
+            for(i = 0; i < 20; i++) //definicja tablicy z losowymi kolorami dla słupków
         {
             var r = Math.floor(Math.random() * 256);
             var g = Math.floor(Math.random() * 256);
@@ -68,10 +68,6 @@ async function chart(e)
             backgroundColor.push(kolor_tlo);
             borderColor.push(border);
         }
-        console.log(labels);
-        console.log(data);
-        console.log(backgroundColor);
-
         var ctx = document.getElementById('myChart');
         var myChart = new Chart(ctx, {
             type: 'bar',
@@ -112,6 +108,28 @@ async function chart(e)
             }
             }
         });
+
+        }else{
+            var ctx = document.getElementById('myChart')
+            h = document.createElement("h1")
+            h.innerText = "Procenty ukończenia osiągnięć przez użytkowników nie zostały publicznie udostępnione dla tej gry"
+            h.classList.add("players")
+            main_chart.insertBefore(h,ctx)
+            main_chart.removeChild(ctx)
+            h.style.paddingBottom = "50px"
+            // ctx.style.width ="100%"
+            // ctx.style.height="200px"
+            // var ctx = ctx.getContext("2d");
+            // ctx.font = "100px Arial";
+            // ctx.fillText("Dla tej gry nie ma osiągnięć", 100, 200,400);
+        }
+        
+
+        
+        // console.log(labels);
+        // console.log(data);
+        // console.log(backgroundColor);
+
 
         line = document.createElement("div");
         line.style.height="1px";
