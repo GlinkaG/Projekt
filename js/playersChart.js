@@ -1,5 +1,12 @@
 async function playersChart(e)
 {
+    function addData(chart, label, data) {
+        chart.data.labels.push(label);
+        chart.data.datasets.forEach((dataset) => {
+            dataset.data.push(data);
+        });
+        chart.update();
+    }
     gamelist2 = await getSteamSpyTop100(currentProxy)
     gamelist3 = []
 
@@ -48,25 +55,6 @@ gamelist2 = await getSteamSpyTop100(currentProxy)
     var p_count = [];
     var backgroundColor = [];
     var borderColor = [];
-    Object.keys(byAverage).sort().forEach(function (key) {
-        apps.push(byAverage[key].appid)
-    });
-
-    //console.log(apps);
-
-    for(i = 0; i < 20; i++)
-    {
-        var temp = await getNumberOfCurrentPlayers(currentProxy, byAverage[i].appid);
-        p_count.push(temp);
-
-        
-    }
-    //console.log(p_count);
-    for( i = 0; i < 20; i++)
-    {
-        names.push(byAverage[i].name);
-    }
-    //console.log(names);
 
     for(i = 0; i < 20; i++) //definicja tablicy z losowymi kolorami dla słupków
         {
@@ -78,7 +66,6 @@ gamelist2 = await getSteamSpyTop100(currentProxy)
             backgroundColor.push(kolor_tlo);
             borderColor.push(border);
         }
-        
 
     main = document.getElementById("main");
     main.innerHTML = "<canvas id='myChart' width='800' height='800'></canvas>";
@@ -102,6 +89,27 @@ gamelist2 = await getSteamSpyTop100(currentProxy)
 
     }
     });
+    Object.keys(byAverage).sort().forEach(function (key) {
+        apps.push(byAverage[key].appid)
+    });
+
+    //console.log(apps);
+
+    for(i = 0; i < 20; i++)
+    {
+        var temp = await getNumberOfCurrentPlayers(currentProxy, byAverage[i].appid);
+        addData(myChart, byAverage[i].name, temp)
+
+
+        
+    }
+    //console.log(p_count);
+    //console.log(names);
+
+    
+        
+
+    
     
 
 
