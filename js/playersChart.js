@@ -56,7 +56,7 @@ gamelist2 = await getSteamSpyTop100(currentProxy)
     var backgroundColor = [];
     var borderColor = [];
 
-    for(i = 0; i < 20; i++) //definicja tablicy z losowymi kolorami dla słupków
+    for(i = 0; i < e; i++) //definicja tablicy z losowymi kolorami dla słupków
         {
             var r = Math.floor(Math.random() * 256);
             var g = Math.floor(Math.random() * 256);
@@ -76,7 +76,7 @@ gamelist2 = await getSteamSpyTop100(currentProxy)
     data: {
         labels: names,
         datasets: [{
-        label: 'Podzial ilości graczy w 20 najpopularniejszych grach',
+        label: 'Podzial ilości graczy w '+ e +'najpopularniejszych grach',
         data: p_count,
         backgroundColor,
         borderColor,
@@ -95,7 +95,7 @@ gamelist2 = await getSteamSpyTop100(currentProxy)
 
     //console.log(apps);
 
-    for(i = 0; i < 20; i++)
+    for(i = 0; i < e; i++)
     {
         var temp = await getNumberOfCurrentPlayers(currentProxy, byAverage[i].appid);
         addData(myChart, byAverage[i].name, temp)
